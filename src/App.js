@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import HomePage from './components/sites/HomePage';
+import Profile from './components/sites/profile';
+import Courses from './components/sites/courses';
+import Qr from './components/sites/qr';
+import Logout from './components/sites/logout';
+import Sidebar from './components/Sidebar';
+import Login from './components/sites/login'
+import Register from "./components/sites/register";
+
+const ROLES = {
+    'User': 1000,
+    'Trainer': 2000,
+    'Admin': 3000
+}
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <Router>
+            <Sidebar/>
+            <Routes>
+                {/*dostępne dla wszystkich*/}
+                <Route path="/" element={<HomePage/>}/>
+                <Route path="/login" element={<Login/>}/>
+                <Route path="/register" element={<Register/>}/>
+
+                {/*dostępne po zalogowaniu*/}
+                <Route path="/courses" element={<Courses/>}/>
+                <Route path="/profile" element={<Profile/>}/>
+                <Route path="/qr" element={<Qr/>}/>
+                <Route path="/logout" element={<Logout/>}/>
+            </Routes>
+        </Router>
+    );
 }
 
 export default App;
