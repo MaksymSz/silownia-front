@@ -1,0 +1,42 @@
+.button {
+    background-color: #5a45bd; /* Kolor tła */
+    color: #fff; /* Kolor tekstu */
+    padding: 10px 20px; /* Wielkość wewnętrznego marginesu */
+    border: none; /* Usuwa domyślny obramowanie przycisku */
+    border-radius: 4px; /* Zaokrąglenie rogów */
+    cursor: pointer; /* Kursor zmienia się na wskaźnik ręki na hoverze */
+    margin-right: 20px;
+}
+
+.button:hover {
+    background-color: mediumpurple; /* Kolor tła na hoverze */
+}
+
+.button.active{
+    background-color: purple;
+}
+.button.disabled{
+    background-color: mediumpurple;
+    cursor: not-allowed;
+}
+
+/* Dodatkowe style dla ukrycia zawartości */
+.content {
+    display: none; /* Ukryj zawartość na początku */
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px; /* Odstęp między przyciskami */
+    position: relative; /* Ustawienie pozycji */
+}
+
+.alert-container {
+    position: fixed; /* Ustawienie alertu na stałej pozycji */
+    bottom: 10px; /* Ustawienie odległości od dołu strony */
+    left: 50%; /* Ustawienie na środku strony */
+    transform: translateX(-50%); /* Wycentrowanie w poziomie */
+    z-index: 1; /* Z-index, aby był na wierzchu */
+}

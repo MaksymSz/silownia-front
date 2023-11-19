@@ -25,7 +25,7 @@
 }
 
 .App-link {
-  color: #61dafb;
+  color: #1E0F30;
 }
 
 @keyframes App-logo-spin {
@@ -35,29 +35,6 @@
   to {
     transform: rotate(360deg);
   }
-}
-
-/*  PROGESSBAR */
-.progress-container {
-  display: flex;
-  align-items: center;
-}
-
-.progress.vertical {
-  width: 20px; /* Szerokość paska postępu */
-  height: 500px; /* Wysokość paska postępu */
-  margin-right: 10px; /* Margines od lewej strony */
-  background-color: #5a45bd;
-  border: 1px solid #ccc;
-  position: relative;
-}
-
-.progress.vertical .progress-bar {
-  background-color: #007bff;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  transition: height 0.5s;
 }
 
 
