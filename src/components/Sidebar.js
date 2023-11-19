@@ -88,7 +88,7 @@ function Sidebar() {
                                             {text}
                                             <br/>
                                             <br/>
-                                            {userRole === "guest" ? null :
+                                            {userRole === "guest" || userRole === null ? null :
                                                 <PassStatusComponent passStatusString={passStatus}/>}
                                         </center>
                                     </div>
