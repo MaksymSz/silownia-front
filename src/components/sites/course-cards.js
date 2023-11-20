@@ -14,10 +14,10 @@ function CourseCards() {
         if (responseData && responseData.courses) {
             return responseData.courses.map(course => {
                 return {
-                    id: course.courseId,
+                    id: course.courseID,
                     title: course.title,
                     subtitle: course.trainer,
-                    text: course.description
+                    text: course.text
                 };
             });
         }
