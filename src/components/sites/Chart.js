@@ -5,13 +5,18 @@ import {dashboard} from "../../axiosConfig";
 const ChartComponent = () => {
     const [data, setData] = useState([]);
 
+    const hmsToMin = (stamp) =>{
+        const tmp = stamp.split(':');
+        return parseInt(tmp[0])*60 + parseInt(tmp[1]);
+    }
+
     useEffect(() => {
         async function fetchData() {
             try {
                 const response = await dashboard();
                 console.log(response.data.data)
                 const modifiedData = response.data.data.map(item => {
-                    return { date: item.date, "czas na siłowni": item.time };
+                    return { date: item.date, "czas na siłowni": hmsToMin(item.time) };
                 });
                 setData(modifiedData);
             } catch (error) {

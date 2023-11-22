@@ -25,9 +25,12 @@ function Checkout(){
 
             if (response.status === 200) {
                 localStorage.setItem('pass', response.data.text);
+                setErrorMessage('Udało się zrealizować bon');
                 console.log(response.data);
-                navigate('/checkout');
-                window.location.reload();
+                setTimeout(() => {
+                    navigate('/checkout');
+                    window.location.reload(); // Przeładuj stronę po zakończeniu akcji
+                }, 3000);
             } else {
                 // Odpowiedź nie jest OK - wyświetl komunikat
                 setErrorMessage('Wpisany bon jest niepoprawny');
@@ -56,7 +59,7 @@ function Checkout(){
                 </div>
                 {showContent && (
                     <div className="checkout-form-container">
-                        {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
+                        {errorMessage && <Alert variant="secondary">{errorMessage}</Alert>}
                         <Form onSubmit={handleSubmit}>
                             <Form.Group controlId="formBasicText">
                                 <Form.Label>Wpisz swój bon:</Form.Label>

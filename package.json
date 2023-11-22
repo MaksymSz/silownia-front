@@ -2,6 +2,7 @@
   "name": "untitled1",
   "version": "0.1.0",
   "private": false,
+  "proxy": "http://localhost:8080",
   "homepge": "https://maksymsz.github.io/MaksymSz.github.io",
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
