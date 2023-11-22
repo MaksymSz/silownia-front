@@ -6,7 +6,9 @@ import Button from "react-bootstrap/Button";
 import {coupon} from "../../axiosConfig";
 import './checkout.css';
 import axios from "axios";
+import {useNavigate} from "react-router-dom";
 function Checkout(){
+    const navigate = useNavigate();
     const [showContent, setShowContent] = useState(false);
     const handleButtonClick = () => {
         setShowContent(!showContent);
@@ -23,6 +25,8 @@ function Checkout(){
 
             if (response.status === 200) {
                 localStorage.setItem('pass', response.data.text);
+                console.log(response.data);
+                navigate('/checkout');
                 window.location.reload();
             } else {
                 // Odpowiedź nie jest OK - wyświetl komunikat

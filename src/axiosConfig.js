@@ -35,7 +35,7 @@ export const login = (email, password) => {
 }
 
 export const coupon = (id, coupon) =>{
-    return axios.post(`${BASE_URL}/enroll`,{
+    return axios.post(`${BASE_URL}/coupon`,{
         id: id,
         coupon: coupon
     })

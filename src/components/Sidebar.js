@@ -132,9 +132,13 @@ const PassStatusComponent = ({passStatusString}) => {
             const passStatusDate = new Date(passStatusString);
             const today = new Date();
             const isDateGreaterThanToday = passStatusDate > today;
+            const dynamicText = isDateGreaterThanToday ? 'aktywny' : 'nie aktywny';
+            const textStyle = {
+                color: isDateGreaterThanToday ? 'green' : 'red',
+            };
 
             return (
-                <span style={{color: isDateGreaterThanToday ? 'green' : 'red'}}>aktywny</span>
+                <span style={textStyle}>{dynamicText}</span>
             );
         } else {
             return (
