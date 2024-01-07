@@ -67,7 +67,7 @@ function Qr() {
 }
 
 export default Qr;
-const DelayedButton = ({ onClick }) => {
+const DelayedButton = ({onClick}) => {
     const [isButtonDisabled, setButtonDisabled] = useState(false);
     const [showAlert, setShowAlert] = useState(false);
 
@@ -107,7 +107,7 @@ const DelayedButton = ({ onClick }) => {
             </button>
             {showAlert && (
                 <div className="alert-container">
-                    <Alert show={showAlert} variant="secondary" dismissible>
+                    <Alert show={showAlert} variant="secondary" onClose={() => setShowAlert(false)} dismissible>
                         Załaduj ponownie stronę aby wyświetlić nowy kod QR
                     </Alert>
                 </div>

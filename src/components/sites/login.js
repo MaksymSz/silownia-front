@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import React, {useState} from 'react';
+import {Form, Button} from 'react-bootstrap';
 import './login.css';
 import {login} from "../../axiosConfig";
 import {useNavigate} from "react-router-dom";
@@ -20,7 +20,6 @@ const Login = () => {
                 localStorage.setItem('id', response.data.id);
                 localStorage.setItem('token', response.data.token);
                 navigate('/');
-                window.location.reload();
             })
             .catch(error => {
                 console.error('Invalid data received');

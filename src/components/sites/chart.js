@@ -1,14 +1,14 @@
-import React, {useEffect, useState} from 'react';
-import {LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts';
-import {dashboard} from "../../axiosConfig";
+import React, { useEffect, useState } from 'react';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import { dashboard } from "../../axiosConfig";
 
 const ChartComponent = () => {
     const [data, setData] = useState([]);
 
-    const hmsToMin = (stamp) =>{
+    const hmsToMin = (stamp) => {
         const tmp = stamp.split(':');
-        return parseInt(tmp[0])*60 + parseInt(tmp[1]);
-    }
+        return parseInt(tmp[0]) * 60 + parseInt(tmp[1]);
+    };
 
     useEffect(() => {
         async function fetchData() {
@@ -31,14 +31,14 @@ const ChartComponent = () => {
         <div>
             <h2>Podsumowanie z ostatnich {data.length} dni:</h2>
             {data.length > 0 ? (
-                <LineChart width={800} height={400} data={data}>
+                <BarChart width={800} height={400} data={data}>
                     <CartesianGrid stroke="#eee" strokeDasharray="5 5"/>
                     <XAxis dataKey="date"/>
                     <YAxis/>
                     <Tooltip/>
                     <Legend/>
-                    <Line type="monotone" dataKey="czas na siłowni" stroke="#8884d8"/>
-                </LineChart>
+                    <Bar dataKey="czas na siłowni" fill="#8884d8"/>
+                </BarChart>
             ) : (
                 <p>Brak danych do wyświetlenia.</p>
             )}

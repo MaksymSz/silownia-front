@@ -1,7 +1,7 @@
 import React from 'react';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
-import Sidebar from './components/Sidebar';
-import HomePage from './components/sites/HomePage';
+import Sidebar from './components/sidebar';
+import HomePage from './components/sites/homePage';
 import LoginTest from './components/sites/loginTest';
 import Register from './components/sites/register';
 import Logout from "./components/sites/logout";
@@ -11,10 +11,13 @@ import Courses from "./components/sites/courses";
 import Login from "./components/sites/login";
 import Checkout from "./components/sites/checkout";
 import {verifyToken} from "./utils";
+import AddCourse from "./components/sites/addCourse";
+import Report from "./components/sites/report";
 
 function App() {
 
     const isTokenValid = verifyToken(localStorage.getItem('token'));
+
     return (
         <Router>
             <Sidebar/>
@@ -33,6 +36,12 @@ function App() {
                         <Route path="/qr" element={<Qr/>}/>
                         <Route path="/checkout" element={<Checkout/>}/>
                         <Route path="/logout" element={<Logout/>}/>
+                        {localStorage.getItem('ROLE') === 'trainer' ? (
+                            <Route path="/addcourse" element={<AddCourse/>}/>
+                        ) : null}
+                        {localStorage.getItem('ROLE') === 'manager' ? (
+                            <Route path="/report" element={<Report/>}/>
+                        ) : null}
                     </>
                 ) : null}
             </Routes>

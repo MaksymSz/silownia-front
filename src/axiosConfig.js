@@ -6,15 +6,15 @@ export default axios.create({
     baseURL: BASE_URL
 });
 
-export const getUsers = () =>{
+export const getUsers = () => {
     return axios.get(`${BASE_URL}/ingym`);
 }
 
-export const getCourses = () =>{
+export const getCourses = () => {
     return axios.get(`${BASE_URL}/courses`);
 }
 
-export const enroll = (requestData) =>{
+export const enroll = (requestData) => {
     return axios.put(`${BASE_URL}/enroll`, JSON.stringify(requestData), {
         headers: {
             'Content-Type': 'application/json',
@@ -22,13 +22,13 @@ export const enroll = (requestData) =>{
     });
 }
 
-export const dashboard = () =>{
+export const dashboard = () => {
     return axios.get(`${BASE_URL}/dashboard/${localStorage.getItem('id')}`)
 }
-export const qr = () =>{
+export const qr = () => {
     return axios.get(`${BASE_URL}/qr/${localStorage.getItem('id')}`)
 }
-export const newQr = () =>{
+export const newQr = () => {
     return axios.post(`${BASE_URL}/newqr`, JSON.stringify(localStorage.getItem('id')), {
         headers: {
             'Content-Type': 'application/json',
@@ -36,7 +36,7 @@ export const newQr = () =>{
     })
 }
 export const login = (email, password) => {
-    return axios.post(`${BASE_URL}/login`,{
+    return axios.post(`${BASE_URL}/login`, {
         email: email,
         password: password
     }, {
@@ -46,8 +46,8 @@ export const login = (email, password) => {
     })
 }
 
-export const coupon = (id, coupon) =>{
-    return axios.post(`${BASE_URL}/coupon`,{
+export const coupon = (id, coupon) => {
+    return axios.post(`${BASE_URL}/coupon`, {
         id: id,
         coupon: coupon
     }, {
@@ -55,4 +55,45 @@ export const coupon = (id, coupon) =>{
             'Content-Type': 'application/json',
         },
     })
+}
+
+export const newcourse = (title, description, date, time) => {
+    return axios.post(`${BASE_URL}/newcourse`, {
+        id: localStorage.getItem('id'),
+        title: title,
+        trainer: localStorage.getItem('userName'),
+        description: description,
+        data: date,
+        time: time
+    }, {
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+}
+
+export const register = (email, password, name, surname) => {
+    return axios.post(`${BASE_URL}/register`, {
+            email: email,
+            password: password,
+            name: name,
+            surname: surname
+        },
+        {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+}
+
+export const generate = (from, to) => {
+    return axios.post(`${BASE_URL}/generate`, {
+            from: from,
+            to: to
+        },
+        {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
 }

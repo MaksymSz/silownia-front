@@ -7,6 +7,7 @@ import React, {useState} from "react";
 import './custom-sidebar.css'
 import {useNavigate} from "react-router-dom";
 
+
 function Sidebar() {
     const expand = false;
 
@@ -26,9 +27,8 @@ function Sidebar() {
     };
 
     const handleClick = (event) => {
-        event.preventDefault(); // Zatrzymaj domyślne zachowanie przekierowania
+        event.preventDefault();
 
-        // Wywołaj funkcję wylogowania
         handleLogout();
         navigate('/');
         window.location.reload();
@@ -36,7 +36,7 @@ function Sidebar() {
 
 
     let sidebarContent;
-    if (userRole === 'client') {
+    if (userRole === 'client' || userRole === 'trainer') {
         sidebarContent = (
             <>
                 <Nav.Link href="/profile" className="custom-sidebar-link">
@@ -54,14 +54,35 @@ function Sidebar() {
                     <img src="/images/wallet.svg" alt="" width="60" height="24"/>
                     Opłać karnet
                 </Nav.Link>
+                {userRole === 'trainer' && (
+                    <Nav.Link href="/addcourse" className="custom-sidebar-link">
+                        <img src="/images/plus-square.svg" alt="" width="60" height="24"/>
+                        Dodaj nowy kurs
+                    </Nav.Link>
+                )}
             </>
         )
-    } else {
+    }
+    else if (userRole === 'manager'){
+        sidebarContent = (
+            <>
+                <Nav.Link href="/report" className="custom-sidebar-link">
+                    <img src="/images/newspaper.svg" alt="" width="60" height="24"/>
+                    Raport
+                </Nav.Link>
+            </>
+        )
+    }
+    else {
         sidebarContent = (
             <>
                 <Nav.Link href="/login" className="custom-sidebar-link">
-                    <img src="/images/bootstrap-logo.svg" alt="" width="60" height="24"/>
-                    Zaloguj się
+                    <img src="/images/door-open.svg" alt="" width="60" height="24"/>
+                    Zaloguj
+                </Nav.Link>
+                <Nav.Link href="/register" className="custom-sidebar-link">
+                    <img src="/images/clipboard.svg" alt="" width="60" height="24"/>
+                    Dołącz
                 </Nav.Link>
             </>
         )
@@ -85,10 +106,11 @@ function Sidebar() {
                                 <p>
                                     <div>
                                         <center>
+                                            <br/>
                                             {text}
                                             <br/>
-                                            <br/>
-                                            {userRole === "guest" || userRole === null ? null :
+                                            <p style={{color: "white"}}>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                                            {userRole === "guest" || userRole === 'manager' ||userRole === null ? null :
                                                 <PassStatusComponent passStatusString={passStatus}/>}
                                         </center>
                                     </div>
