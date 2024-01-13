@@ -28,6 +28,7 @@ const Login = () => {
                 localStorage.setItem('id', response.data.id);
                 localStorage.setItem('token', response.data.token);
                 navigate('/');
+                window.location.reload();
             })
             .catch(error => {
                 console.error('Invalid data received');
