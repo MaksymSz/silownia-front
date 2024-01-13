@@ -8,15 +8,12 @@ Dokumentacja ta zawiera szczegółowe informacje dotyczące aplikacji Siłowni w
 
 1. [Instalacja](#instalacja)
 2. [Struktura Projektu](#struktura-projektu)
-3. [Konfiguracja](#konfiguracja)
-4. [Komponenty](#komponenty)
-5. [Routing](#routing)
-6. [Stan Aplikacji](#stan-aplikacji)
+3. [Komponenty](#komponenty)
+4. [Konfiguracja](#konfiguracja)
+5. [Stan Aplikacji](#stan-aplikacji)
+6. [Routing](#routing)
 7. [Zarządzanie Użytkownikami](#zarzadzanie-uzytkownikami)
-8. [Zarządzanie Treningami](#zarzadzanie-treningami)
-9. [Zarządzanie Sprzętem](#zarzadzanie-sprzetem)
 10. [Testowanie](#testowanie)
-11. [Dalsze Kroki](#dalsze-kroki)
 
 ## Instalacja
 Aby zainstalować aplikację, wykonaj poniższe kroki:
@@ -63,4 +60,14 @@ npm start
 |-- package.json
 |-- README.md
 ```
+## Konfiguracja
+W pliku src/config.js znajdziesz pliki konfiguracyjne, takie jak ustawienia połączenia z bazą danych czy klucze API.
 
+## Komponenty
+W folderze src/components znajdują się komponenty React odpowiedzialne za interfejs użytkownika.
+
+## Routing
+Aplikacja wykorzystuje React Router do obsługi nawigacji między różnymi widokami.
+
+## Testowanie
+Kod został poddany statycznej analizie kodu za pomocą ESlint. Wyniki zostały umieszczone jako plik html z odnośnikiem na stronie głównej dokumentacji.
