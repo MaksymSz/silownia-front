@@ -10,6 +10,7 @@ import {generate} from "../../axiosConfig";
 import Alert from "react-bootstrap/Alert";
 import "./qr.css";
 import Summary from "./summary";
+import { format } from 'date-fns';
 
 registerLocale('pl', pl);
 /**
@@ -52,7 +53,7 @@ const Report = () => {
 
         console.log("CLICK!");
 
-        generate(from, to)
+        generate(format(from, 'yyy-MM-dd'), format(to, 'yyy-MM-dd'))
             .then(response => {
                 console.log('Report generated');
                 setAvgUser(response.data.avgUsers);
@@ -76,7 +77,7 @@ const Report = () => {
                                     {from === null || to === null ? (<h2>Wybierz okres to wygenerowania raportu</h2>) :
                                         <h2>Podsumowanie aktywności na siłowni w okresie
                                             <br/>
-                                            od {from.toISOString().split('T')[0].replace(/-/g, ':')} do {to.toISOString().split('T')[0].replace(/-/g, ':')}
+                                            od {format(from, 'yyy-MM-dd')} do {format(to, 'yyy-MM-dd')}
                                         </h2>}
                                 </center>
                                 <br/>

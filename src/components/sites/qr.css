@@ -1,15 +1,15 @@
 .button {
-    background-color: #5a45bd; /* Kolor tła */
-    color: #fff; /* Kolor tekstu */
-    padding: 10px 20px; /* Wielkość wewnętrznego marginesu */
-    border: none; /* Usuwa domyślny obramowanie przycisku */
-    border-radius: 4px; /* Zaokrąglenie rogów */
-    cursor: pointer; /* Kursor zmienia się na wskaźnik ręki na hoverze */
+    background-color: #5a45bd;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
     margin-right: 20px;
 }
 
 .button:hover {
-    background-color: mediumpurple; /* Kolor tła na hoverze */
+    background-color: mediumpurple;
 }
 
 .button.active{
@@ -20,23 +20,22 @@
     cursor: not-allowed;
 }
 
-/* Dodatkowe style dla ukrycia zawartości */
 .content {
-    display: none; /* Ukryj zawartość na początku */
+    display: none;
 }
 
 .button-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px; /* Odstęp między przyciskami */
-    position: relative; /* Ustawienie pozycji */
+    gap: 10px;
+    position: relative;
 }
 
 .alert-container {
-    position: fixed; /* Ustawienie alertu na stałej pozycji */
-    bottom: 10px; /* Ustawienie odległości od dołu strony */
-    left: 50%; /* Ustawienie na środku strony */
-    transform: translateX(-50%); /* Wycentrowanie w poziomie */
-    z-index: 1; /* Z-index, aby był na wierzchu */
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
 }
