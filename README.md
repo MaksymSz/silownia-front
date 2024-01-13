@@ -46,6 +46,9 @@ npm start
 |   |-- manifest.json
 |-- /src
 |   |-- /components
+|       |-- /sites
+|       |-- custom-sidebar.css
+|       |-- siebar.js
 |   |-- App.css
 |   |-- App.js
 |   |-- App.test.js
@@ -61,10 +64,11 @@ npm start
 |-- README.md
 ```
 ## Konfiguracja
-W pliku src/config.js znajdziesz pliki konfiguracyjne, takie jak ustawienia połączenia z bazą danych czy klucze API.
+W pliku axiosConfig.js znajdują się metody konfigurujące działanie zapytań realizowanych za pomocą axios.
 
 ## Komponenty
 W folderze src/components znajdują się komponenty React odpowiedzialne za interfejs użytkownika.
+Poza tym folderem znajduje się komponent całościowy aplikacji(App.js) oraz komponent paska nawigacyjnego(sidebar.js).
 
 ## Routing
 Aplikacja wykorzystuje React Router do obsługi nawigacji między różnymi widokami.
