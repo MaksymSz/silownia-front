@@ -34,7 +34,7 @@ npm start
 
 ## Struktura projektu
 ```lua
-|/silownia-react
+/silownia-react
 |-- /.idea
 |   |-- /inspectionProfiles
 |-- /public
