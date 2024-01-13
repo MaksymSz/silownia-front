@@ -73,5 +73,5 @@ Kod został poddany statycznej analizie kodu za pomocą ESlint. Wyniki zostały 
 
 ## Dokumentacja użytkownika
 Dokumentacja użytkownika znajduje się w pliku user_doc.pdf
-[Dokumentacja użytkownika](https://github.com/MaksymSz/silownia-front/blob/master/user_doc.pdf?raw=true) {data-download-link="Pobierz Plik"}
+[Dokumentacja użytkownika](https://github.com/MaksymSz/silownia-front/blob/master/user_doc.pdf) {data-download-link="Pobierz Plik"}
 
