@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/sites/report.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/sites/report.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, {useState} from 'react';
+import {Button, Row, Col} from 'react-bootstrap';
+import DatePicker, {registerLocale} from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import pl from 'date-fns/locale/pl';
+import Container from "react-bootstrap/Container";
+import InputGroup from 'react-bootstrap/InputGroup';
+import './addCourse.css';
+import {generate} from "../../axiosConfig";
+import Alert from "react-bootstrap/Alert";
+import "./qr.css";
+import Summary from "./summary";
+import { format } from 'date-fns';
+
+registerLocale('pl', pl);
+/**
+ * Komponent odpowiedzialny za renderowanie podstrony na której użytkownik może wysłać żądanie o wygenerowanie raportu i wyświetlenie jego podsumowania
+ * @returns {Element} - Element odpowiedzialny za renderowanie
+ * @constructor
+ */
+const Report = () => {
+
+    const [generated, setGenerated] = useState(false);
+
+    const [from, setFrom] = useState(null);
+    const [to, setTo] = useState(null);
+
+    const [avgUsers, setAvgUser] = useState(null)
+    const [avgTime, setAvgTime] = useState(null)
+    const [newUsers, setNewUser] = useState(null)
+    const [users, setUser] = useState(null)
+
+    const isDisabled = from === null || to === null;
+    const [showAlert, setShowAlert] = useState(false);
+    /**
+     * @param from
+     */
+    const handleFromChange = from => {
+        setFrom(from);
+    };
+    /**
+     * @param to
+     */
+    const handleToChange = to => {
+        setTo(to);
+    };
+
+    /**
+     * @param e
+     */
+    const generateReport = (e) => {
+        e.preventDefault();
+
+        console.log("CLICK!");
+
+        generate(format(from, 'yyy-MM-dd'), format(to, 'yyy-MM-dd'))
+            .then(response => {
+                console.log('Report generated');
+                setAvgUser(response.data.avgUsers);
+                setAvgTime(response.data.avgTime);
+                setNewUser(response.data.newUsers);
+                setUser(response.data.users);
+                setGenerated(true);
+            })
+            .catch(error => {
+                console.log(error);
+                setShowAlert(true);
+            })
+    }
+
+    return (!generated ? (
+                &lt;Container className="add-course-container">
+                    &lt;Row className="justify-content-md-center">
+                        &lt;Col md={10}>
+                            &lt;>
+                                &lt;center>
+                                    {from === null || to === null ? (&lt;h2>Wybierz okres to wygenerowania raportu&lt;/h2>) :
+                                        &lt;h2>Podsumowanie aktywności na siłowni w okresie
+                                            &lt;br/>
+                                            od {format(from, 'yyy-MM-dd')} do {format(to, 'yyy-MM-dd')}
+                                        &lt;/h2>}
+                                &lt;/center>
+                                &lt;br/>
+                                &lt;br/>
+
+                                &lt;InputGroup>
+                                    &lt;InputGroup.Text>Od&lt;/InputGroup.Text>
+                                    &lt;div>
+                                        &lt;DatePicker
+                                            selected={from}
+                                            onChange={handleFromChange}
+                                            dateFormat="yyyy/MM/dd"
+                                            placeholderText="Wybierz datę"
+                                            locale="pl"
+                                        />
+                                    &lt;/div>
+                                    &amp;nbsp;
+                                    &amp;nbsp;
+                                    &lt;InputGroup.Text>Do&lt;/InputGroup.Text>
+                                    &lt;div>
+                                        &lt;DatePicker
+                                            selected={to}
+                                            onChange={handleToChange}
+                                            dateFormat="yyyy/MM/dd"
+                                            placeholderText="Wybierz datę"
+                                            locale="pl"
+                                        />
+                                    &lt;/div>
+                                &lt;/InputGroup>
+
+                                &lt;center>
+                                    &lt;Button variant="primary" type="submit" disabled={isDisabled}
+                                            onClick={generateReport}
+                                    >
+                                        Generuj
+                                    &lt;/Button>
+                                &lt;/center>
+                            &lt;/>
+                            {showAlert &amp;&amp; (
+                                &lt;div className="alert-container">
+                                    &lt;Alert show={showAlert} onClose={() => setShowAlert(false)}
+                                           variant="danger" dismissible>
+                                        Nie udało się wygenerować raportu
+                                    &lt;/Alert>
+                                &lt;/div>
+                            )}
+                        &lt;/Col>
+                    &lt;/Row>
+                &lt;/Container>)
+            : &lt;Container className="add-course-container">
+                &lt;Summary{...{avgTime, avgUsers, users, newUsers}}/>
+            &lt;/Container>
+
+    );
+};
+
+export default Report;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AddCourse.html">AddCourse</a></li><li><a href="App.html">App</a></li><li><a href="Basic.html">Basic</a></li><li><a href="ChartComponent.html">ChartComponent</a></li><li><a href="Checkout.html">Checkout</a></li><li><a href="CourseCards.html">CourseCards</a></li><li><a href="Courses.html">Courses</a></li><li><a href="DelayedButton.html">DelayedButton</a></li><li><a href="HomePage.html">HomePage</a></li><li><a href="Login.html">Login</a></li><li><a href="Logout.html">Logout</a></li><li><a href="Profile.html">Profile</a></li><li><a href="Qr.html">Qr</a></li><li><a href="Register.html">Register</a></li><li><a href="Report.html">Report</a></li><li><a href="Sidebar.html">Sidebar</a></li><li><a href="Summary.html">Summary</a></li></ul><h3>Global</h3><ul><li><a href="global.html#BASE_URL">BASE_URL</a></li><li><a href="global.html#coupon">coupon</a></li><li><a href="global.html#dashboard">dashboard</a></li><li><a href="global.html#enroll">enroll</a></li><li><a href="global.html#generate">generate</a></li><li><a href="global.html#getCourses">getCourses</a></li><li><a href="global.html#getUsers">getUsers</a></li><li><a href="global.html#login">login</a></li><li><a href="global.html#newQr">newQr</a></li><li><a href="global.html#newcourse">newcourse</a></li><li><a href="global.html#qr">qr</a></li><li><a href="global.html#register">register</a></li><li><a href="global.html#verifyToken">verifyToken</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sat Jan 13 2024 20:23:22 GMT+0100 (czas środkowoeuropejski standardowy)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

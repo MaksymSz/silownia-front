@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/sites/register.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/sites/register.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, {useState} from 'react';
+import Container from "react-bootstrap/Container";
+import {Button, Col, Form, Row} from "react-bootstrap";
+import './addCourse.css';
+import Alert from "react-bootstrap/Alert";
+import {register} from "../../axiosConfig";
+import {useNavigate} from "react-router-dom";
+
+/**
+ * Komponent odpowiedzialny za renderowanie podstrony odpowiedzialnej za rejestrację nowego użytkownika
+ * @returns {Element} - Element do renderowania
+ * @constructor
+ */
+function Register() {
+    /**
+     * @type {NavigateFunction}
+     */
+    const navigate = useNavigate();
+
+    const [validated, setValidated] = useState(false);
+    const [showAlert, setShowAlert] = useState(false);
+
+    const [email, setEmail] = useState('test');
+    const [password, setPassword] = useState('');
+    const [repeatedPassword, setRepPassword] = useState('');
+    const [name, setName] = useState('');
+    const [surname, setSurname] = useState('');
+    /**
+     * @param event
+     */
+    const handleEmailChange = (event) => {
+        setEmail(event.target.value);
+    }
+    /**
+     * @param event
+     */
+    const handlePasswordChange = (event) => {
+        setPassword(event.target.value);
+    }
+    /**
+     * @param event
+     */
+    const handleRepPasswordChange = (event) => {
+        setRepPassword(event.target.value);
+    }
+    /**
+     * @param event
+     */
+    const handleNameChange = (event) => {
+        setName(event.target.value);
+    }
+    /**
+     * @param event
+     */
+    const handleSurnameChange = (event) => {
+        setSurname(event.target.value);
+    }
+    /**
+     * @param event
+     */
+    const handleSubmit = (event) => {
+        const form = event.currentTarget;
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+
+        if (password !== repeatedPassword) {
+            setShowAlert(true);
+            event.preventDefault();
+            event.stopPropagation();
+        }
+
+        setValidated(true);
+
+        register(email, password, name, surname)
+            .then(response => {
+                console.log('Registration was successful');
+                localStorage.setItem('userName', response.data.name);
+                localStorage.setItem('pass', response.data.gymPass);
+                localStorage.setItem('ROLE', response.data.role);
+                localStorage.setItem('id', response.data.id);
+                localStorage.setItem('token', response.data.token);
+                navigate('/');
+            })
+            .catch(error => {
+                console.error('Invalid data received');
+                window.location.reload();
+            })
+
+    };
+
+    return (
+        &lt;Container className="add-course-container">
+
+            &lt;center>
+                &lt;h1>
+                    Rejestracja
+                &lt;/h1>
+            &lt;/center>
+
+            &lt;Form noValidate validated={validated} onSubmit={handleSubmit}>
+                &lt;Row className="mb-3">
+                    &lt;Form.Group as={Col} md="4" controlId="validationCustom01">
+                        &lt;Form.Label>Adres email&lt;/Form.Label>
+                        &lt;Form.Control
+                            required
+                            type="email"
+                            placeholder="Adres email"
+                            onClick={handleEmailChange}
+                        />
+                    &lt;/Form.Group>
+                &lt;/Row>
+
+
+                &lt;Row className="mb-3">
+                    &lt;Form.Group as={Col} md="4" controlId="validationCustom02">
+                        &lt;Form.Label>Hasło&lt;/Form.Label>
+                        &lt;div className="password-input">
+                            &lt;Form.Control
+                                type="password"
+                                placeholder="Wprowadź hasło"
+                                name="password"
+                                value={password}
+                                onChange={handlePasswordChange}
+                                required
+                            />
+                        &lt;/div>
+                    &lt;/Form.Group>
+
+                    &lt;Form.Group as={Col} md="4" controlId="validationCustom02">
+                        &lt;Form.Label>Potwierdź&lt;/Form.Label>
+                        &lt;div className="password-input">
+                            &lt;Form.Control
+                                type="password"
+                                placeholder="Potwierdź hasło"
+                                name="confirmPassword"
+                                value={repeatedPassword}
+                                onChange={handleRepPasswordChange}
+                                required
+                            />
+                        &lt;/div>
+                    &lt;/Form.Group>
+                &lt;/Row>
+
+
+                &lt;Row className="mb-3">
+                    &lt;Form.Group as={Col} md="4" controlId="validationCustom01">
+                        &lt;Form.Label>Imię&lt;/Form.Label>
+                        &lt;Form.Control
+                            required
+                            type="text"
+                            placeholder="Imię"
+                            onClick={handleNameChange}
+                        />
+                    &lt;/Form.Group>
+                    &lt;Form.Group as={Col} md="4" controlId="validationCustom02">
+                        &lt;Form.Label>Nazwisko&lt;/Form.Label>
+                        &lt;Form.Control
+                            required
+                            type="text"
+                            placeholder="Nazwisko"
+                            onClick={handleSurnameChange}
+                        />
+                    &lt;/Form.Group>
+                &lt;/Row>
+                &lt;Form.Group className="mb-3">
+                    &lt;Form.Check
+                        required
+                        label="Zgadzam się na przetwarzanie moich danych osobowych"
+                        feedback="Pole wymagane"
+                        feedbackType="invalid"
+                    />
+                &lt;/Form.Group>
+                &lt;Button type="submit">Dołącz&lt;/Button>
+                {showAlert &amp;&amp; (
+                    &lt;div className="alert-container">
+                        &lt;Alert show={showAlert} onClose={() => setShowAlert(false)} variant="danger" dismissible>
+                            Hasła nie są identyczne
+                        &lt;/Alert>
+                    &lt;/div>
+                )}
+            &lt;/Form>
+        &lt;/Container>
+    );
+}
+
+export default Register;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AddCourse.html">AddCourse</a></li><li><a href="App.html">App</a></li><li><a href="Basic.html">Basic</a></li><li><a href="ChartComponent.html">ChartComponent</a></li><li><a href="Checkout.html">Checkout</a></li><li><a href="CourseCards.html">CourseCards</a></li><li><a href="Courses.html">Courses</a></li><li><a href="DelayedButton.html">DelayedButton</a></li><li><a href="HomePage.html">HomePage</a></li><li><a href="Login.html">Login</a></li><li><a href="Logout.html">Logout</a></li><li><a href="Profile.html">Profile</a></li><li><a href="Qr.html">Qr</a></li><li><a href="Register.html">Register</a></li><li><a href="Report.html">Report</a></li><li><a href="Sidebar.html">Sidebar</a></li><li><a href="Summary.html">Summary</a></li></ul><h3>Global</h3><ul><li><a href="global.html#BASE_URL">BASE_URL</a></li><li><a href="global.html#coupon">coupon</a></li><li><a href="global.html#dashboard">dashboard</a></li><li><a href="global.html#enroll">enroll</a></li><li><a href="global.html#generate">generate</a></li><li><a href="global.html#getCourses">getCourses</a></li><li><a href="global.html#getUsers">getUsers</a></li><li><a href="global.html#login">login</a></li><li><a href="global.html#newQr">newQr</a></li><li><a href="global.html#newcourse">newcourse</a></li><li><a href="global.html#qr">qr</a></li><li><a href="global.html#register">register</a></li><li><a href="global.html#verifyToken">verifyToken</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sat Jan 13 2024 20:23:22 GMT+0100 (czas środkowoeuropejski standardowy)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
