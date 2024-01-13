@@ -10,10 +10,9 @@ Dokumentacja ta zawiera szczegółowe informacje dotyczące aplikacji Siłowni w
 2. [Struktura Projektu](#struktura-projektu)
 3. [Komponenty](#komponenty)
 4. [Konfiguracja](#konfiguracja)
-5. [Stan Aplikacji](#stan-aplikacji)
-6. [Routing](#routing)
-7. [Zarządzanie Użytkownikami](#zarzadzanie-uzytkownikami)
-10. [Testowanie](#testowanie)
+5. [Routing](#routing)
+6. [Testowanie](#testowanie)
+7. [Dokumentacja użytkownika](#dokumentacja-użytkownika)
 
 ## Instalacja
 Aby zainstalować aplikację, wykonaj poniższe kroki:
@@ -71,3 +70,5 @@ Aplikacja wykorzystuje React Router do obsługi nawigacji między różnymi wido
 
 ## Testowanie
 Kod został poddany statycznej analizie kodu za pomocą ESlint. Wyniki zostały umieszczone jako plik html z odnośnikiem na stronie głównej dokumentacji.
+
+## Dokumentacja użytkownika
