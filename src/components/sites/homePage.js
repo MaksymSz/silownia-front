@@ -3,6 +3,12 @@ import Badge from 'react-bootstrap/Badge';
 import {getUsers} from "../../axiosConfig";
 import "./homepage.css"
 
+/**
+ * Komponent odpowiedzialny za renderowanie ile osób jest na siłowni
+ * @param liczba - Aktualna liczba osób na siłowni
+ * @returns {Element} - Element do renderowania
+ * @constructor
+ */
 function Basic({liczba}) {
     return (
         <div>
@@ -13,6 +19,11 @@ function Basic({liczba}) {
     );
 }
 
+/**
+ * Komponent odpowiedzialny za renderowanie strony głownej aplikacji
+ * @returns {Element} - Element do renderowania
+ * @constructor
+ */
 function HomePage() {
 
     const [ctr, setCtr] = useState("");
@@ -40,7 +51,7 @@ function HomePage() {
         <div>
             <center>
                 <div>
-                <Basic liczba={ctr}/>
+                    <Basic liczba={ctr}/>
                     <img className="image-with-border" src="/images/gymIcon.jpg" alt="" width="512" height="512"/>
                 </div>
             </center>

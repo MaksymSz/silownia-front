@@ -4,10 +4,18 @@ import './login.css';
 import {login} from "../../axiosConfig";
 import {useNavigate} from "react-router-dom";
 
+/**
+ * Komponent odpowiedzialny za podstronę logowania
+ * @returns {Element} - Element do renderowania
+ * @constructor
+ */
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
+    /**
+     * @param e
+     */
     const handleSubmit = (e) => {
         e.preventDefault();
 

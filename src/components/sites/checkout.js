@@ -5,9 +5,17 @@ import {Form} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import {coupon} from "../../axiosConfig";
 import './checkout.css';
-import axios from "axios";
 import {useNavigate} from "react-router-dom";
+
+/**
+ * Komponent odpowiedzialny za realizację płatności
+ * @returns {Element} - Element do renderowania
+ * @constructor
+ */
 function Checkout(){
+    /**
+     * @type {NavigateFunction}
+     */
     const navigate = useNavigate();
     const [showContent, setShowContent] = useState(false);
     const handleButtonClick = () => {
@@ -16,7 +24,10 @@ function Checkout(){
 
     const [inputValue, setInputValue] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
-
+    /**
+     * @param e
+     * @returns {Promise<void>}
+     */
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -29,14 +40,12 @@ function Checkout(){
                 console.log(response.data);
                 setTimeout(() => {
                     navigate('/checkout');
-                    window.location.reload(); // Przeładuj stronę po zakończeniu akcji
+                    window.location.reload();
                 }, 3000);
             } else {
-                // Odpowiedź nie jest OK - wyświetl komunikat
                 setErrorMessage('Wpisany bon jest niepoprawny');
             }
         } catch (error) {
-            // Błąd zapytania - wyświetl komunikat
             setErrorMessage('Wystąpił błąd podczas wysyłania zapytania');
         }
     };

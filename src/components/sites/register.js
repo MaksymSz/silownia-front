@@ -6,7 +6,15 @@ import Alert from "react-bootstrap/Alert";
 import {register} from "../../axiosConfig";
 import {useNavigate} from "react-router-dom";
 
+/**
+ * Komponent odpowiedzialny za renderowanie podstrony odpowiedzialnej za rejestrację nowego użytkownika
+ * @returns {Element} - Element do renderowania
+ * @constructor
+ */
 function Register() {
+    /**
+     * @type {NavigateFunction}
+     */
     const navigate = useNavigate();
 
     const [validated, setValidated] = useState(false);
@@ -17,23 +25,39 @@ function Register() {
     const [repeatedPassword, setRepPassword] = useState('');
     const [name, setName] = useState('');
     const [surname, setSurname] = useState('');
-
-    const handleEmailChange = (event) =>{
+    /**
+     * @param event
+     */
+    const handleEmailChange = (event) => {
         setEmail(event.target.value);
     }
-    const handlePasswordChange = (event) =>{
+    /**
+     * @param event
+     */
+    const handlePasswordChange = (event) => {
         setPassword(event.target.value);
     }
-    const handleRepPasswordChange = (event) =>{
+    /**
+     * @param event
+     */
+    const handleRepPasswordChange = (event) => {
         setRepPassword(event.target.value);
     }
-    const handleNameChange = (event) =>{
+    /**
+     * @param event
+     */
+    const handleNameChange = (event) => {
         setName(event.target.value);
     }
-    const handleSurnameChange = (event) =>{
+    /**
+     * @param event
+     */
+    const handleSurnameChange = (event) => {
         setSurname(event.target.value);
     }
-
+    /**
+     * @param event
+     */
     const handleSubmit = (event) => {
         const form = event.currentTarget;
         if (form.checkValidity() === false) {
@@ -41,7 +65,7 @@ function Register() {
             event.stopPropagation();
         }
 
-        if (password !== repeatedPassword){
+        if (password !== repeatedPassword) {
             setShowAlert(true);
             event.preventDefault();
             event.stopPropagation();
@@ -49,8 +73,8 @@ function Register() {
 
         setValidated(true);
 
-        register(email,password,name, surname)
-            .then(response =>{
+        register(email, password, name, surname)
+            .then(response => {
                 console.log('Registration was successful');
                 localStorage.setItem('userName', response.data.name);
                 localStorage.setItem('pass', response.data.gymPass);
@@ -86,7 +110,7 @@ function Register() {
                             onClick={handleEmailChange}
                         />
                     </Form.Group>
-                    </Row>
+                </Row>
 
 
                 <Row className="mb-3">

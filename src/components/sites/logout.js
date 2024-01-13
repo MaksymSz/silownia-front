@@ -1,8 +1,14 @@
 import React from 'react';
 import {useNavigate} from "react-router-dom";
 
+/**
+ * Komponent obsługujący wylogowanie się użytkownika z serwisu
+ * @returns {Element} - Element do renderowania
+ * @constructor
+ */
 function Logout() {
     const navigate = useNavigate();
+
     function removeDataFromLocalStorage() {
         localStorage.clear();
         localStorage.setItem('ROLE', 'guest');

@@ -1,22 +1,31 @@
-import React, { useEffect, useState } from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
-import { dashboard } from "../../axiosConfig";
+import React, {useEffect, useState} from 'react';
+import {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts';
+import {dashboard} from "../../axiosConfig";
 
+/**
+ * Generate a chart
+ * @returns {Element}
+ * @constructor
+ */
 const ChartComponent = () => {
     const [data, setData] = useState([]);
 
+    /**
+     * Convert hms to mins
+     * @param stamp
+     * @returns {number}
+     */
     const hmsToMin = (stamp) => {
         const tmp = stamp.split(':');
         return parseInt(tmp[0]) * 60 + parseInt(tmp[1]);
     };
-
     useEffect(() => {
         async function fetchData() {
             try {
                 const response = await dashboard();
                 console.log(response.data.data)
                 const modifiedData = response.data.data.map(item => {
-                    return { date: item.date, "czas na siłowni": hmsToMin(item.time) };
+                    return {date: item.date, "czas na siłowni[min]": hmsToMin(item.time)};
                 });
                 setData(modifiedData);
             } catch (error) {
@@ -37,7 +46,7 @@ const ChartComponent = () => {
                     <YAxis/>
                     <Tooltip/>
                     <Legend/>
-                    <Bar dataKey="czas na siłowni" fill="#8884d8"/>
+                    <Bar dataKey="czas na siłowni[min]" fill="#8884d8"/>
                 </BarChart>
             ) : (
                 <p>Brak danych do wyświetlenia.</p>

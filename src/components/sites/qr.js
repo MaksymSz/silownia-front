@@ -4,11 +4,24 @@ import './qr.css';
 import {qr, newQr} from "../../axiosConfig";
 import Alert from "react-bootstrap/Alert";
 
-
+/**
+ * Komponent odpowiedzialny za renderowanie podstrony do wyświetlania oraz generowania nowego kodu QR
+ * @returns {Element} - Element do renderowania
+ * @constructor
+ */
 function Qr() {
     const [value, setValue] = useState('0');
+    /**
+     * @type {string} Parametr wykorzystywany do wyświetlenia kodu QR odpowiedzialny za kolor pikseli
+     */
     const back = '#FFFFFF';
+    /**
+     * @type {string} Parametr wykorzystywany do wyświetlenia kodu QR odpowiedzialny za kolor tła
+     */
     const fore = '#000000';
+    /**
+     * @type {string} Parametr wykorzystywany do wyświetlenia kodu QR odpowiedzialny za rozmiar pola na którym jest wyświetlany kod QR
+     */
     const qrSize = 200;
 
     const [showContent, setShowContent] = useState(false);
@@ -67,6 +80,12 @@ function Qr() {
 }
 
 export default Qr;
+/**
+ * Komponent odpowiedzialny za renderowanie przycisku do generacji nowego kodu QR
+ * @param onClick
+ * @returns {Element} - Element do renderowania
+ * @constructor
+ */
 const DelayedButton = ({onClick}) => {
     const [isButtonDisabled, setButtonDisabled] = useState(false);
     const [showAlert, setShowAlert] = useState(false);
@@ -75,7 +94,7 @@ const DelayedButton = ({onClick}) => {
         setShowAlert(true);
         setTimeout(() => {
             setShowAlert(false);
-        }, 3000); // Ukrycie alertu po 3 sekundach
+        }, 3000);
     };
 
     const handleButtonClick = () => {
@@ -89,7 +108,7 @@ const DelayedButton = ({onClick}) => {
                     console.error('Błąd generowania nowego kodu QR', error);
                 });
 
-            // Ustawienie opóźnienia na 5 sekund przed odblokowaniem przycisku
+
             setTimeout(() => {
                 setButtonDisabled(false);
             }, 5000);

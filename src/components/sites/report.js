@@ -12,32 +12,41 @@ import "./qr.css";
 import Summary from "./summary";
 
 registerLocale('pl', pl);
+/**
+ * Komponent odpowiedzialny za renderowanie podstrony na której użytkownik może wysłać żądanie o wygenerowanie raportu i wyświetlenie jego podsumowania
+ * @returns {Element} - Element odpowiedzialny za renderowanie
+ * @constructor
+ */
 const Report = () => {
-
-
 
     const [generated, setGenerated] = useState(false);
 
     const [from, setFrom] = useState(null);
     const [to, setTo] = useState(null);
 
-    const [avgUsers, setAvgUser] = useState(1)
-    const [avgTime, setAvgTime] = useState(2)
-    const [newUsers, setNewUser] = useState(3)
-    const [users, setUser] = useState(4)
+    const [avgUsers, setAvgUser] = useState(null)
+    const [avgTime, setAvgTime] = useState(null)
+    const [newUsers, setNewUser] = useState(null)
+    const [users, setUser] = useState(null)
 
     const isDisabled = from === null || to === null;
     const [showAlert, setShowAlert] = useState(false);
-
+    /**
+     * @param from
+     */
     const handleFromChange = from => {
         setFrom(from);
     };
-
+    /**
+     * @param to
+     */
     const handleToChange = to => {
         setTo(to);
     };
 
-
+    /**
+     * @param e
+     */
     const generateReport = (e) => {
         e.preventDefault();
 
@@ -118,7 +127,7 @@ const Report = () => {
                     </Row>
                 </Container>)
             : <Container className="add-course-container">
-                <Summary{...{avgTime,avgUsers,users,newUsers}}/>
+                <Summary{...{avgTime, avgUsers, users, newUsers}}/>
             </Container>
 
     );

@@ -7,25 +7,45 @@ import React, {useState} from "react";
 import './custom-sidebar.css'
 import {useNavigate} from "react-router-dom";
 
-
+/**
+ * Komponent odpowiedzialny za renderowanie bocznego paska nawigacyjnego
+ * @returns {Element} - Element do renderowania
+ * @constructor
+ */
 function Sidebar() {
+    /**
+     * @type {boolean}
+     */
     const expand = false;
-
+    /**
+     * @type {string}
+     */
     const userName = localStorage.getItem('userName');
     const [text] = useState(userName || 'Nie zalogowano');
-
+    /**
+     * @type {string}
+     */
     const pass = localStorage.getItem('pass');
     const [passStatus] = useState(pass || null);
-
+    /**
+     * @type {string}
+     */
     const userRole = localStorage.getItem('ROLE');
-
+    /**
+     * @type {NavigateFunction}
+     */
     const navigate = useNavigate();
+    /**
+     *
+     */
     const handleLogout = () => {
         localStorage.clear();
         localStorage.setItem('ROLE', 'guest');
         console.log('Wyczyszczono localStorage');
     };
-
+    /**
+     * @param event
+     */
     const handleClick = (event) => {
         event.preventDefault();
 

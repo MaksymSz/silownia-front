@@ -14,8 +14,17 @@ import {verifyToken} from "./utils";
 import AddCourse from "./components/sites/addCourse";
 import Report from "./components/sites/report";
 
+/**
+ * The App component is the main container of a React application. It is responsible for rendering other components, managing global state (if used), and coordinating the main functions of the application.
+ *
+ * @returns {Element} - React Element to render
+ * @constructor
+ */
 function App() {
-
+    /**
+     *
+     * @type {boolean}
+     */
     const isTokenValid = verifyToken(localStorage.getItem('token'));
 
     return (

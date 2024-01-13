@@ -12,32 +12,54 @@ import Alert from "react-bootstrap/Alert";
 import "./qr.css";
 
 registerLocale('pl', pl);
+/**
+ * Komponent odpowiedzialny za dodanie nowego kursu przez użytkownika
+ * @returns {Element} - Element do renderowania
+ * @constructor
+ */
 const AddCourse = () => {
+    /**
+     * @type {NavigateFunction}
+     */
     const navigate = useNavigate();
 
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [date, setDate] = useState(null);
     const [time, setTime] = useState('');
-
+    /**
+     * @type {boolean}
+     */
     const isDisabled = title === '' || description === '' || date === null || time === '';
     const [showAlert, setShowAlert] = useState(false);
     const [success, setSuccess] = useState(false);
-
+    /**
+     * @param event
+     */
     const handleTitleChange = (event) => {
         setTitle(event.target.value);
     };
-
+    /**
+     * @param event
+     */
     const handleDescriptionChange = (event) => {
         setDescription(event.target.value);
     };
+    /**
+     * @param date
+     */
     const handleDateChange = date => {
         setDate(date.toISOString().split('T')[0].replace(/-/g, ':'));
     };
+    /**
+     * @param event
+     */
     const handleTimeChange = (event) => {
         setTime(event.target.value);
     };
-
+    /**
+     * @param e
+     */
     const addNewCourse = (e) => {
         e.preventDefault();
 
@@ -51,7 +73,7 @@ const AddCourse = () => {
                 console.log(response.data.text);
                 setTimeout(() => {
                     navigate('/newcourse');
-                    window.location.reload(); // Przeładuj stronę po zakończeniu akcji
+                    window.location.reload();
                 }, 3000);
 
             })
