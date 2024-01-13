@@ -72,6 +72,5 @@ Aplikacja wykorzystuje React Router do obsługi nawigacji między różnymi wido
 Kod został poddany statycznej analizie kodu za pomocą ESlint. Wyniki zostały umieszczone jako plik html z odnośnikiem na stronie głównej dokumentacji.
 
 ## Dokumentacja użytkownika
-Dokumentacja użytkownika znajduje się w pliku user_doc.pdf
-[Dokumentacja użytkownika](https://github.com/MaksymSz/silownia-front/blob/master/user_doc.pdf) {data-download-link="Pobierz Plik"}
+Dokumentacja użytkownika znajduje się w pliku [user_doc.pdf](https://github.com/MaksymSz/silownia-front/blob/master/user_doc.pdf) {data-download-link="Pobierz Plik"}
 
