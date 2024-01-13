@@ -29,7 +29,7 @@ Aby zainstalować aplikację, wykonaj poniższe kroki:
 8. Żeby zmienić bazowe url serwera wejdź do src/axiosConfig.js i zmień stałą BASE_URL na url serwera wystawiającego endpointy
 
 ```bash
-git clone https://github.com/twoje_repozytorium/silownia-react.git
+git clone https://github.com/MaksymSz/silownia-front.git
 cd silownia-react
 npm install
 npm start
