@@ -12,7 +12,8 @@ Dokumentacja ta zawiera szczegółowe informacje dotyczące aplikacji Siłowni w
 4. [Konfiguracja](#konfiguracja)
 5. [Routing](#routing)
 6. [Testowanie](#testowanie)
-7. [Dokumentacja użytkownika](#dokumentacja-użytkownika)
+7. [Dokumentacja kodu](#dokumentacja-kodu)
+8. [Dokumentacja użytkownika](#dokumentacja-użytkownika)
 
 ## Instalacja
 Aby zainstalować aplikację, wykonaj poniższe kroki:
@@ -70,6 +71,10 @@ Aplikacja wykorzystuje React Router do obsługi nawigacji między różnymi wido
 
 ## Testowanie
 Kod został poddany statycznej analizie kodu za pomocą ESlint. Wyniki zostały umieszczone jako plik html z odnośnikiem na stronie głównej dokumentacji.
+
+## Dokumentacja kodu
+Dokumentacja kodu aplikacji została stworzona za pomocą JSDocs,a następnie udostępiona za pomocą [github-pages]([https://github.com/MaksymSz/silownia-front/blob/master/user_doc.pdf](https://maksymsz.github.io/silownia-front/).
+W dokumentacji znajdują się wyniki statycznej analizy kodu.
 
 ## Dokumentacja użytkownika
 Dokumentacja użytkownika znajduje się w pliku [user_doc.pdf](https://github.com/MaksymSz/silownia-front/blob/master/user_doc.pdf) {data-download-link="Pobierz Plik"}
