@@ -83,5 +83,5 @@ Dokumentacja kodu aplikacji została stworzona za pomocą JSDocs,a następnie ud
 W dokumentacji znajdują się wyniki statycznej analizy kodu.
 
 ## Dokumentacja użytkownika
-Dokumentacja użytkownika znajduje się w pliku [user_doc.pdf](https://github.com/MaksymSz/silownia-front/blob/master/user_doc.pdf) {data-download-link="Pobierz Plik"}
+Dokumentacja użytkownika znajduje się w pliku [user_doc.pdf](https://github.com/MaksymSz/silownia-front/blob/master/user_doc.pdf){data-download-link="Pobierz Plik"}
 
