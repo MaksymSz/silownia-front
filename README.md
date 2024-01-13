@@ -1,5 +1,7 @@
 # Dokumentacja Aplikacji Siłowni w React
 
+## :heavy_exclamation_mark: Aplikacja realizowana jest jako część projektu na przedmiot Inżynieria Oprogramowania :heavy_exclamation_mark:
+
 ## Wprowadzenie
 
 Dokumentacja ta zawiera szczegółowe informacje dotyczące aplikacji Siłowni w React. Aplikacja została stworzona w celu obsługi systemu siłowni, umożliwiając zarządzanie użytkownikami, treningami, sprzętem i innymi aspektami związanymi z prowadzeniem siłowni.
