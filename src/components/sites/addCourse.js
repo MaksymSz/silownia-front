@@ -10,6 +10,7 @@ import {useNavigate} from "react-router-dom";
 import {newcourse} from "../../axiosConfig";
 import Alert from "react-bootstrap/Alert";
 import "./qr.css";
+import { format } from 'date-fns';
 
 registerLocale('pl', pl);
 /**
@@ -49,7 +50,7 @@ const AddCourse = () => {
      * @param date
      */
     const handleDateChange = date => {
-        setDate(date.toISOString().split('T')[0].replace(/-/g, ':'));
+        setDate(date);
     };
     /**
      * @param event
@@ -65,7 +66,7 @@ const AddCourse = () => {
 
         console.log("CLICK!");
 
-        newcourse(title, description, date, time)
+        newcourse(title, description, format(date,'yyyy-MM-dd'), time)
             .then(response => {
                 //window.location.reload();
                 setSuccess(true);
