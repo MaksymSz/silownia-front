@@ -53,7 +53,7 @@ const Report = () => {
 
         console.log("CLICK!");
 
-        generate(format(from, 'yyy-MM-dd'), format(to, 'yyy-MM-dd'))
+        generate(format(from, 'yyyy-MM-dd'), format(to, 'yyyy-MM-dd'))
             .then(response => {
                 console.log('Report generated');
                 setAvgUser(response.data.avgUsers);

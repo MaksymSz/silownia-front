@@ -16,13 +16,13 @@ function Summary({avgUsers, avgTime, newUsers, users}) {
             <center>
                 <h2>Podsumowanie danych:</h2>
                 <div>
-                    <span>Średnia ilość osób dziennie: {avgUsers}</span>
+                    <span>Średnia ilość osób dziennie: {avgUsers}&nbsp;&nbsp;&nbsp;</span>
                     <span>Średni czas spędzany na siłowni: {avgTime}</span>
                 </div>
                 <br/>
                 <br/>
                 <div>
-                    <span>Liczba nowych klientów: {newUsers}</span>
+                    <span>Liczba nowych klientów: {newUsers}&nbsp;&nbsp;&nbsp;</span>
                     <span>Łączna liczba klientów: {users}</span>
                 </div>
             </center>
